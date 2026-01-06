@@ -26,7 +26,6 @@
 // runAgent("hi my name is max");
 
 //* Agent with tools
-
 import "dotenv/config";
 import { generateText, stepCountIs, tool, type ModelMessage } from "ai";
 import { openai } from "@ai-sdk/openai";
@@ -51,10 +50,11 @@ export const runAgent = async (
     stopWhen: stepCountIs(1),
   });
 
+  console.log(text);
   toolCalls.forEach(async (tc) => {
     const result = await executeTools(tc.toolName as any, tc.input);
     console.log(`Tool ${tc.toolName} returned: ${result}`);
   });
 };
 
-runAgent("what is the current time?");
+runAgent("hi get the current time");
